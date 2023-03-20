@@ -55,6 +55,7 @@ collecting template definitions.
 
 import argparse
 import bz2
+import gzip
 import logging
 import os.path
 import re  # TODO use regex when it will be standard
@@ -178,7 +179,8 @@ class OutputSplitter():
 
     def open(self, filename):
         if self.compress:
-            return bz2.BZ2File(filename + '.bz2', 'w')
+            # return bz2.BZ2File(filename + '.bz2', 'w')
+            return gzip.GzipFile(filename + '.gz', mode='w')
         else:
             return open(filename, 'w')
 
